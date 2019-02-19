@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">WhatsApp</string>
+    <string name="msg_error">O campo %1$s não pode estar vazio</string>
+    <string name="msg_warning">Caso você não tenha recebido nenhum SMS você pode voltar a tela anterior e tentar novamente</string>
+    <string name="msg_error_code">O Código digitado é inválido</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="inavlid_number">O Número digitado é inválido</string>
+    <string name="number_exceeded">Número de SMS enviado para este número foi excedido</string>
+    <string name="titulo_config">Configurações</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="configuracoes">Configurações</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="permission_dinied_title">Permissões Negadas</string>
+    <string name="permission_denied">Para utilizar o aplicativo é necessário aceitar as permissões</string>
+    <string name="sair">Sair</string>
+    <string name="msg_succes_update">%1$s atualizado com sucesso</string>
+    <string name="msg_title_dialog_custom">Como deseja continuar ?</string>
+    <string name="buscar_galeria">Buscar na galeria</string>
+    <string name="usar_camera">Usar a câmera</string>
+    <string name="msg_aviso_nome">Esse não é seu nome de usuário nem sua senha, esse nome ficará visível para os seus contatos do whatsapp</string>
+    <string name="title_activity_chat">ChatActivity</string>
+    <string name="erro_save_img">Erro ao enviar imagem</string>
+    <string name="erro_load_contacts">Ocorreu um erro ao carregar os contatos</string>
+    <string name="title_activity_grupo">GrupoActivity</string>
+    <string name="title_activity_group">GroupActivity</string>
+    <string name="title_activity_register_group">RegisterGroupActivity</string>
+    <string name="select_member_error">Seleciona ao menos um membro para o grupo</string>
+    <string name="define_name_img_group" >Defina um nome e uma imagem opicional</string>
+</resources>
