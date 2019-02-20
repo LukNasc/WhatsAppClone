@@ -27,9 +27,7 @@ import com.example.whatsapp.model.Message;
 import com.example.whatsapp.model.Usuario;
 import com.google.firebase.auth.FirebaseAuth;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 public class Util {
     public static void checkUser(FirebaseAuth auth, Action act) {
@@ -41,7 +39,6 @@ public class Util {
 
     public static List<Usuario> getContactList(List<Usuario> lstUsuario, List<Usuario> lstUserDatabase, boolean group, Context context) {
         lstUsuario.clear();
-        List<Usuario> lstUsrNameMod = new ArrayList<>();
         int first = 0;
         String numberFormat = null;
         ContentResolver cr = context.getContentResolver();
@@ -114,7 +111,7 @@ public class Util {
             cur.close();
         }
 
-        return lstUsrNameMod;
+        return lstUsuario;
     }
 
 
@@ -142,7 +139,7 @@ public class Util {
             }
         }
     }
-    public static void showNotification(Conversations message, Context context) {
+    public static void showNotification(Conversations conversations, Context context) {
         NotificationManager mNotificationManager;
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context, "notify_001");
@@ -152,21 +149,21 @@ public class Util {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, ii, 0);
 
         NotificationCompat.BigTextStyle bigText = new NotificationCompat.BigTextStyle();
-        bigText.bigText(message.getUltimaMessagem());
-        if (message.getIsGroup().equals("true")) {
-            bigText.setBigContentTitle(message.getGroup().getNome());
-            mBuilder.setContentTitle(message.getGroup().getNome());
+        bigText.bigText(conversations.getUltimaMessagem());
+        if (conversations.getIsGroup().equals("true")) {
+            bigText.setBigContentTitle(conversations.getGroup().getNome());
+            mBuilder.setContentTitle(conversations.getGroup().getNome());
         } else {
-            bigText.setBigContentTitle(message.getUsuario().getNome());
-            bigText.setSummaryText(message.getUsuario().getNumber());
-            mBuilder.setContentTitle(message.getUsuario().getNome());
-            mBuilder.setSubText(message.getUsuario().getNumber());
+            bigText.setBigContentTitle(conversations.getUsuario().getNome());
+            bigText.setSummaryText(conversations.getUsuario().getNumber());
+            mBuilder.setContentTitle(conversations.getUsuario().getNome());
+            mBuilder.setSubText(conversations.getUsuario().getNumber());
 
         }
 
         mBuilder.setContentIntent(pendingIntent);
         mBuilder.setSmallIcon(R.drawable.ic_launcher_foreground);
-        mBuilder.setContentText(message.getUltimaMessagem());
+        mBuilder.setContentText(conversations.getUltimaMessagem());
         mBuilder.setPriority(Notification.PRIORITY_MAX);
         mBuilder.setLights(Color.RED, 000, 000);
         long[] partner = {500, 500, 500, 500, 500, 500, 500};
@@ -191,10 +188,13 @@ public class Util {
 
         Log.i("statusJob", "send notification");
 
-        SharedPreferences sharedPreferences = context.getSharedPreferences("MESSAGE", Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("codMessage",message.getCodMessage());
-        editor.commit();
+        updateConversation(conversations);
+
+    }
+
+    private static void updateConversation(Conversations conv) {
+        conv.setView("true");
+        conv.salvar();
 
     }
 }

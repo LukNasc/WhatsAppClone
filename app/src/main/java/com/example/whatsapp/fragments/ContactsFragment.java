@@ -43,7 +43,7 @@ import java.util.List;
 public class ContactsFragment extends Fragment implements OnClickRecyclerView {
 
     private RecyclerView listaContacts;
-    private List<Usuario> lstUsuario = new ArrayList<>();
+    private static List<Usuario> lstUsuario = new ArrayList<>();
     private List<Usuario> lstUserDatabase = new ArrayList<>();
     private DatabaseReference database = SettingsFirebase.getFirebaseDatabase();
     private String numberFormat;
@@ -154,7 +154,7 @@ public class ContactsFragment extends Fragment implements OnClickRecyclerView {
         adapterContactsList.notifyDataSetChanged();
     }
 
-    public List<Usuario> getContacts(){
-        return this.lstUsuario;
+    public static List<Usuario> getContacts(){
+        return lstUsuario;
     }
 }

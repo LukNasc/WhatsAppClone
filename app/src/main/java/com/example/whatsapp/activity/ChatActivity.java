@@ -139,8 +139,6 @@ public class ChatActivity extends AppCompatActivity {
                 usuario.setNome(UsuarioFirebase.getDateUserCurrent().getNome());
                 usuario.setNumber(UsuarioFirebase.getCurrentUser().getPhoneNumber());
                 usuario.setFoto(UsuarioFirebase.getDateUserCurrent().getFoto());
-
-
                 saveConversation(msg, idUserRemetente, idUserDestin, usuario);
             } else {
                 for (Usuario membro : groupDestin.getMembros()) {
@@ -178,8 +176,7 @@ public class ChatActivity extends AppCompatActivity {
         conversationsRemetente.setUltimaMessagem(message.getMessage());
         conversationsRemetente.setUsuario(user);
         conversationsRemetente.setIsGroup("false");
-        String cod  = String.valueOf(UUID.randomUUID());
-        conversationsRemetente.setCodMessage(cod);
+        conversationsRemetente.setView("false");
 
         conversationsRemetente.salvar();
 
@@ -192,8 +189,7 @@ public class ChatActivity extends AppCompatActivity {
         conversationsRemetente.setUltimaMessagem(message.getMessage());
         conversationsRemetente.setGroup(group);
         conversationsRemetente.setIsGroup("true");
-        String cod  = String.valueOf(UUID.randomUUID());
-        conversationsRemetente.setCodMessage(cod);
+        conversationsRemetente.setView("false");
         conversationsRemetente.salvar();
 
     }

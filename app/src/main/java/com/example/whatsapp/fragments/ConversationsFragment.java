@@ -26,6 +26,7 @@ import android.widget.ProgressBar;
 import com.example.whatsapp.R;
 import com.example.whatsapp.activity.ChatActivity;
 import com.example.whatsapp.activity.HomeActivity;
+import com.example.whatsapp.adapter.AdapterContactsList;
 import com.example.whatsapp.adapter.AdapterConversation;
 import com.example.whatsapp.model.Conversations;
 import com.example.whatsapp.model.Group;
@@ -103,20 +104,16 @@ public class ConversationsFragment extends Fragment implements OnClickRecyclerVi
                 }
             }
         }
-
         adapterConversation = new AdapterConversation(lstConversationSeacrh, getActivity(), this);
         recyclerConversas.setAdapter(adapterConversation);
         adapterConversation.notifyDataSetChanged();
     }
-
     public void reloadConversations() {
         adapterConversation = new AdapterConversation(lstConversations, getActivity(), this);
         recyclerConversas.setAdapter(adapterConversation);
         adapterConversation.notifyDataSetChanged();
     }
-
-
-    public void getContactsBd() {
+  public void getContactsBd() {
         DatabaseReference firebaseReference = database.child("usuarios");
         mEventListener = firebaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -136,22 +133,14 @@ public class ConversationsFragment extends Fragment implements OnClickRecyclerVi
 
     }
 
-
     public void getConversations() {
         eventListenerConversas = conversasRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Conversations conversations = dataSnapshot.getValue(Conversations.class);
-                ContactsFragment contactsFragment = new ContactsFragment();
-                for (Usuario usuario : lstUserDatabase) {
-                    for (Usuario usuario1 : contactsFragment.getContacts()) {
-                        if (usuario.getNumber().equals(usuario1.getNumber())) {
-                            conversations.getUsuario().setNome(usuario1.getNome());
-                        }
-                    }
-                }
-
+                List<Usuario> lstContacts = ContactsFragment.getContacts();
                 lstConversations.add(conversations);
+                getContactsBd();
                 adapterConversation.notifyDataSetChanged();
 //                Util.showNotification(conversations, getActivity());
 
@@ -186,7 +175,6 @@ public class ConversationsFragment extends Fragment implements OnClickRecyclerVi
         super.onStart();
         lstConversations.clear();
         getConversations();
-        getContactsBd();
 
     }
 

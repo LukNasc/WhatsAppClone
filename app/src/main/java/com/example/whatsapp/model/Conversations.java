@@ -2,7 +2,6 @@ package com.example.whatsapp.model;
 
 import com.example.whatsapp.util.SettingsFirebase;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 
 public class Conversations {
     private String idRementente;
@@ -11,7 +10,7 @@ public class Conversations {
     private Usuario usuario;
     private String isGroup;
     private Group group;
-    private String codMessage;
+    private String view;
 
     public Conversations() {
         this.setIsGroup("false");
@@ -37,12 +36,12 @@ public class Conversations {
         isGroup = group;
     }
 
-    public String getCodMessage() {
-        return codMessage;
+    public String getView() {
+        return view;
     }
 
-    public void setCodMessage(String codMessage) {
-        this.codMessage = codMessage;
+    public void setView(String view) {
+        this.view = view;
     }
 
     public Group getGroup() {

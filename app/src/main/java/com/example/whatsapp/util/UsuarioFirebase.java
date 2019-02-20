@@ -85,11 +85,12 @@ public class UsuarioFirebase {
         Usuario dataUser = new Usuario();
         dataUser.setNumber(getCurrentUser().getPhoneNumber());
         dataUser.setNome(getCurrentUser().getDisplayName());
+        dataUser.setIdUser(getIdUser());
 
         if(firebaseUser.getPhotoUrl() == null){
             dataUser.setFoto("");
         }else{
-            firebaseUser.getPhotoUrl().toString();
+            dataUser.setFoto(firebaseUser.getPhotoUrl().toString());
         }
 
         return dataUser;
